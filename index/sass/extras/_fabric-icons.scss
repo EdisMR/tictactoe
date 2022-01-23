@@ -1,0 +1,32 @@
+/*
+  Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fabric-assets-license
+*/
+@font-face {
+  font-family: 'FabricMDL2Icons';
+  src: url('/index/sass/extras/fabric-icons-f909e793.woff') format('woff');
+}
+
+.ms-Icon {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-family: 'FabricMDL2Icons';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+}
+
+.ms-Icon--Cancel:before { content: "\E711"; }
+.ms-Icon--DiamondUser:before { content: "\E4F9"; }
+.ms-Icon--LocationCircle:before { content: "\E80E"; }
+.ms-Icon--Medal:before { content: "\EE38"; }
+.ms-Icon--MedalSolid:before { content: "\F6B9"; }
+.ms-Icon--Play:before { content: "\E768"; }
+.ms-Icon--PlaySolid:before { content: "\F5B0"; }
+.ms-Icon--Reset:before { content: "\E423"; }
+.ms-Icon--RewardsLogo:before { content: "\ED4E"; }
+.ms-Icon--RewardsLogoArt64:before { content: "\EEF2"; }
+.ms-Icon--RewardsLogoSolid:before { content: "\ED4F"; }
+.ms-Icon--Running:before { content: "\EADA"; }
+.ms-Icon--SearchNearby:before { content: "\E820"; }
+.ms-Icon--SIPMove:before { content: "\E759"; }
