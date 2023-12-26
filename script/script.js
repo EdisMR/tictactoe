@@ -97,110 +97,39 @@ function animatedWhoRemove() {
 
 /* After the click, is it a winner? */
 function evaluarGanador() {
+    const combinacionesGanadoras = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+
+    let comparador = turno ? classInner.userX : classInner.userO;
     let hayGanador = false;
-    let comparador;
-    if (turno) {
-        comparador = classInner.userX;
-    } else {
-        comparador = classInner.userO;
-    }
-    if (gridItemsSpan[0].classList[1] == comparador &&
-        gridItemsSpan[1].classList[1] == comparador &&
-        gridItemsSpan[2].classList[1] == comparador) {
 
-        gridItemsSpan[0].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[1].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[2].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[3].classList[1] == comparador &&
-        gridItemsSpan[4].classList[1] == comparador &&
-        gridItemsSpan[5].classList[1] == comparador) {
-
-        gridItemsSpan[3].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[4].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[5].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[6].classList[1] == comparador &&
-        gridItemsSpan[7].classList[1] == comparador &&
-        gridItemsSpan[8].classList[1] == comparador) {
-
-        gridItemsSpan[6].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[7].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[8].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[0].classList[1] == comparador &&
-        gridItemsSpan[3].classList[1] == comparador &&
-        gridItemsSpan[6].classList[1] == comparador) {
-
-        gridItemsSpan[0].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[3].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[6].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[1].classList[1] == comparador &&
-        gridItemsSpan[4].classList[1] == comparador &&
-        gridItemsSpan[7].classList[1] == comparador) {
-
-        gridItemsSpan[1].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[4].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[7].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[2].classList[1] == comparador &&
-        gridItemsSpan[5].classList[1] == comparador &&
-        gridItemsSpan[8].classList[1] == comparador) {
-
-        gridItemsSpan[2].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[5].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[8].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[0].classList[1] == comparador &&
-        gridItemsSpan[4].classList[1] == comparador &&
-        gridItemsSpan[8].classList[1] == comparador) {
-
-        gridItemsSpan[0].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[4].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[8].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (gridItemsSpan[2].classList[1] == comparador &&
-        gridItemsSpan[4].classList[1] == comparador &&
-        gridItemsSpan[6].classList[1] == comparador) {
-
-        gridItemsSpan[2].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[4].parentNode.classList.add("winnerBGColor")
-        gridItemsSpan[6].parentNode.classList.add("winnerBGColor")
-
-        hayGanador = true;
-    }
-    if (turno && hayGanador) {
-        users.winner = users.user1;
-    }
-    if (!turno && hayGanador) {
-        users.winner = users.user2;
-    }
-    if (hayGanador) {
-        mostrarGanador();
-        htmlElm.resetGame.classList.remove("d-None");
-    } else {
-        if (contadorDeTurnos >= 9) {
-            htmlElm.turno.classList.add("d-None");
-            htmlElm.resetGame.classList.remove("d-None");
-            removeListeners();
+    for (const combinacion of combinacionesGanadoras) {
+        const [a, b, c] = combinacion;
+        if (
+            gridItemsSpan[a].classList[1] === comparador &&
+            gridItemsSpan[b].classList[1] === comparador &&
+            gridItemsSpan[c].classList[1] === comparador
+        ) {
+            [a, b, c].forEach(i => gridItemsSpan[i].parentNode.classList.add("winnerBGColor"));
+            hayGanador = true;
+            break;
         }
     }
+
+    if (hayGanador) {
+        users.winner = turno ? users.user1 : users.user2;
+        mostrarGanador();
+        htmlElm.resetGame.classList.remove("d-None");
+    } else if (contadorDeTurnos >= 9) {
+        htmlElm.turno.classList.add("d-None");
+        htmlElm.resetGame.classList.remove("d-None");
+        removeListeners();
+    }
 }
+
 
 /* Show the cover title to show the winner */
 function mostrarGanador() {
@@ -223,9 +152,9 @@ buttonReset.addEventListener("click", resetGame, false);
 function resetGame() {
     gridItemsSpan.forEach(elm => {
         elm.parentNode.dataset.occupied = "false";
-        try{
+        try {
             elm.parentNode.classList.remove("winnerBGColor");
-        }catch{}
+        } catch { }
 
         elm.classList.remove(classInner.userO);
         elm.classList.remove(classInner.userX);
@@ -236,16 +165,15 @@ function resetGame() {
     addClickEventGrid();
     contadorDeTurnos = 0;
 
-    
-    if(users.winner==""){
+
+    if (users.winner == "") {
         firstRandomShift()
     }
-    users.winner=""
+    users.winner = ""
 }
 
-function firstRandomShift(){
+function firstRandomShift() {
     turno = Math.random() < 0.5;
-    console.log("firstRandomShift",turno);
 }
 
 firstRandomShift()
