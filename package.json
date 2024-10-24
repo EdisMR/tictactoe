@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sss":"sass --watch ../Tictactoe/ "
+    "sss": "sass --watch ../Tictactoe/ ",
+    "build": "tsc && sass ./sass/compiled/compiled.scss ./sass/compiled/compiled.min.css"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.80.4",
+    "typescript": "^5.6.3"
+  }
 }

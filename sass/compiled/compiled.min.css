@@ -1,1 +1,266 @@
-@charset "UTF-8";html{background-color:#95aabd;font-family:"Segoe UI",Roboto,sans-serif;color:#f3f3f3;user-select:none}header{text-align:left;margin-bottom:25px}header h1{margin:0}main{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;min-height:70vh;flex-direction:column}.d-None{display:none!important}.nombres{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;padding:20px;max-width:90vw}.nombres div{display:flex;justify-content:center;align-items:center;font-size:20px}.inputsName span{padding:2px;border-right:0;font-weight:700}.inputsName input{background-color:transparent;color:white;width:150px;padding:10px;font-size:20px;border-color:#ccc;margin-left:5px}.btnSubmit button{display:inline-block;width:100%;height:100%;padding:10px;margin-top:20px;background-color:#eee}.btnSubmit button:hover{background-color:#fff}.btnSubmit button:active{background-color:#ddd}#juego{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}.turno{display:inline-block;white-space:nowrap;font-size:26px;color:white;width:80vw;margin-top:20px;margin-bottom:40px;text-align:center}.icon-whos-playing{font-size:30px}#grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:10px 10px}#grid div{height:100px;width:100px;background-color:rgba(70,131,180,.596);display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;font-size:50px;font-weight:900;color:#c4d3e0;border-radius:10px;cursor:pointer;transition-duration:.2s}#grid div:hover{background-color:rgba(70,131,180,.856)}#grid div:active{background-color:rgba(70,131,180,.418)}.ventanaGanador{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;align-content:center;background-color:rgba(70,131,180,.438);padding:10px;text-align:center;font-size:40px;margin-bottom:20px;border-radius:20px;color:#eee}.ventanaGanador p,.ventanaGanador span{flex:none;display:block;width:100%;margin:5px}.animatedWho{animation-name:animatedW;animation-timing-function:cubic-bezier(.175,.885,.32,1.275);animation-iteration-count:1;animation-delay:0s;animation-duration:.5s}@keyframes animatedW{0%{transform:rotateY(90deg)}100%{transform:rotateY(0deg)}}.resetGame{display:flex;justify-content:center;padding:30px}.resetGame button{padding:5px}footer{text-align:center;margin-top:25px}header,footer{padding:20px}header a,footer a{color:rgba(0,103,188,.86)!important}.winnerBGColor{background-color:#69b976!important}@font-face{font-family:"FabricMDL2Icons";src:url("../extras/fabric-icons-f909e793.woff") format("woff")}.ms-Icon{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-family:"FabricMDL2Icons";font-style:normal;font-weight:normal;speak:none}.ms-Icon--Cancel:before{content:""}.ms-Icon--DiamondUser:before{content:""}.ms-Icon--LocationCircle:before{content:""}.ms-Icon--Medal:before{content:""}.ms-Icon--MedalSolid:before{content:""}.ms-Icon--Play:before{content:""}.ms-Icon--PlaySolid:before{content:""}.ms-Icon--Reset:before{content:""}.ms-Icon--RewardsLogo:before{content:""}.ms-Icon--RewardsLogoArt64:before{content:""}.ms-Icon--RewardsLogoSolid:before{content:""}.ms-Icon--Running:before{content:""}.ms-Icon--SearchNearby:before{content:""}.ms-Icon--SIPMove:before{content:""}
+html {
+  background-color: rgb(149, 170, 189);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  color: rgb(243, 243, 243);
+  user-select: none;
+}
+
+header {
+  text-align: left;
+  margin-bottom: 25px;
+}
+header h1 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  flex-direction: column;
+}
+
+.d-None {
+  display: none !important;
+}
+
+/* Form de nombres */
+.nombres {
+  display: flex;
+  /* none | flex */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 90vw;
+}
+.nombres div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.inputsName span {
+  padding: 2px;
+  border-right: 0px;
+  font-weight: 700;
+}
+.inputsName input {
+  background-color: transparent;
+  color: white;
+  width: 150px;
+  padding: 10px;
+  font-size: 20px;
+  border-color: #ccc;
+  margin-left: 5px;
+}
+
+.btnSubmit button {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #eee;
+}
+.btnSubmit button:hover {
+  background-color: #fff;
+}
+.btnSubmit button:active {
+  background-color: #ddd;
+}
+
+#juego {
+  display: flex;
+  /* none | flex */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.turno {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 26px;
+  color: white;
+  width: 80vw;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.icon-whos-playing {
+  font-size: 30px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px 10px;
+}
+#grid div {
+  height: 100px;
+  width: 100px;
+  background-color: rgba(70, 131, 180, 0.596);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-weight: 900;
+  color: rgb(196, 211, 224);
+  border-radius: 10px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+#grid div:hover {
+  background-color: rgba(70, 131, 180, 0.856);
+}
+#grid div:active {
+  background-color: rgba(70, 131, 180, 0.418);
+}
+
+.ventanaGanador {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: rgba(70, 131, 180, 0.438);
+  padding: 10px;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  color: #eee;
+}
+.ventanaGanador p,
+.ventanaGanador span {
+  flex: none;
+  display: block;
+  width: 100%;
+  margin: 5px;
+}
+
+.animatedWho {
+  animation-name: animatedW;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-iteration-count: 1;
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+}
+
+@keyframes animatedW {
+  0% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+.resetGame {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+.resetGame button {
+  padding: 5px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 25px;
+}
+
+header,
+footer {
+  padding: 20px;
+}
+header a,
+footer a {
+  color: rgba(0, 103, 188, 0.86) !important;
+}
+
+.winnerBGColor {
+  background-color: rgb(105, 185, 118) !important;
+}
+
+/*
+  Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fabric-assets-license
+*/
+@font-face {
+  font-family: "FabricMDL2Icons";
+  src: url("../extras/fabric-icons-f909e793.woff") format("woff");
+}
+.ms-Icon {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-family: "FabricMDL2Icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+}
+
+.ms-Icon--Cancel:before {
+  content: "\e711";
+}
+
+.ms-Icon--DiamondUser:before {
+  content: "\e4f9";
+}
+
+.ms-Icon--LocationCircle:before {
+  content: "\e80e";
+}
+
+.ms-Icon--Medal:before {
+  content: "\ee38";
+}
+
+.ms-Icon--MedalSolid:before {
+  content: "\f6b9";
+}
+
+.ms-Icon--Play:before {
+  content: "\e768";
+}
+
+.ms-Icon--PlaySolid:before {
+  content: "\f5b0";
+}
+
+.ms-Icon--Reset:before {
+  content: "\e423";
+}
+
+.ms-Icon--RewardsLogo:before {
+  content: "\ed4e";
+}
+
+.ms-Icon--RewardsLogoArt64:before {
+  content: "\eef2";
+}
+
+.ms-Icon--RewardsLogoSolid:before {
+  content: "\ed4f";
+}
+
+.ms-Icon--Running:before {
+  content: "\eada";
+}
+
+.ms-Icon--SearchNearby:before {
+  content: "\e820";
+}
+
+.ms-Icon--SIPMove:before {
+  content: "\e759";
+}
+
+/*# sourceMappingURL=compiled.min.css.map */
